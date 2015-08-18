@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Vg4nbsd-devel] Trivial fix for NetBSD-current 5.99.56
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/vg4nbsd-devel/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:vg4nbsd-devel%40lists.berlios.de?Subject=Re%3A%20%5BVg4nbsd-devel%5D%20Trivial%20fix%20for%20NetBSD-current%205.99.56&In-Reply-To=%3CCAFEPE9TQETUrPGiVpti2f8AUE%3Ddu9XGk0AR_mqvWC5HUn%3Doz6Q%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Vg4nbsd-devel] Trivial fix for NetBSD-current 5.99.56</H1>
+    <B>Kailash Sethuraman</B> 
+    <A HREF="mailto:vg4nbsd-devel%40lists.berlios.de?Subject=Re%3A%20%5BVg4nbsd-devel%5D%20Trivial%20fix%20for%20NetBSD-current%205.99.56&In-Reply-To=%3CCAFEPE9TQETUrPGiVpti2f8AUE%3Ddu9XGk0AR_mqvWC5HUn%3Doz6Q%40mail.gmail.com%3E"
+       TITLE="[Vg4nbsd-devel] Trivial fix for NetBSD-current 5.99.56">hsaliak at gmail.com
+       </A><BR>
+    <I>Thu Feb 23 16:38:06 CET 2012</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6">[ date ]</a>
+              <a href="thread.html#6">[ thread ]</a>
+              <a href="subject.html#6">[ subject ]</a>
+              <a href="author.html#6">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Moritz
+Sorry for the late reply. Thanks for the patch! I will try to add this in.
+
+Thanks,
+Kailash
+
+
+On Fri, Dec 23, 2011 at 1:03 PM, Moritz Wilhelmy &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/vg4nbsd-devel">mw at wzff.de</A>&gt; wrote:
+
+&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> this patch fixes at least autoconf and parsing of /proc/self/maps in a
+</I>&gt;<i> way so that it &quot;works&quot; on NetBSD-current. It doesn't break anything
+</I>&gt;<i> that's already there.
+</I>&gt;<i> I'm aware that starting from scratch is advised, but I'm unsure whether
+</I>&gt;<i> or not I hav enough time and experience to do such a port. For now, take
+</I>&gt;<i> this trivial contribution to the project.
+</I>&gt;<i>
+</I>&gt;<i> Best regards,
+</I>&gt;<i>
+</I>&gt;<i> Moritz
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Index: configure.in
+</I>&gt;<i> ===================================================================
+</I>&gt;<i> --- configure.in        (revision 330)
+</I>&gt;<i> +++ configure.in        (working copy)
+</I>&gt;<i> @@ -207,6 +207,11 @@
+</I>&gt;<i>         VG_OS=&quot;netbsdelf2&quot;
+</I>&gt;<i>         ;;
+</I>&gt;<i>
+</I>&gt;<i> +     *netbsdelf5*)
+</I>&gt;<i> +      AC_MSG_RESULT([ok (${host_os})])
+</I>&gt;<i> +        VG_OS=&quot;netbsdelf2&quot;
+</I>&gt;<i> +        ;;
+</I>&gt;<i> +
+</I>&gt;<i>      *)
+</I>&gt;<i>        AC_MSG_RESULT([no (${host_os})])
+</I>&gt;<i>        AC_MSG_ERROR([Valgrind is operating system specific. Sorry. Please
+</I>&gt;<i> consider doing a port.])
+</I>&gt;<i> Index: coregrind/m_aspacemgr/aspacemgr.c
+</I>&gt;<i> ===================================================================
+</I>&gt;<i> --- coregrind/m_aspacemgr/aspacemgr.c   (revision 330)
+</I>&gt;<i> +++ coregrind/m_aspacemgr/aspacemgr.c   (working copy)
+</I>&gt;<i> @@ -3284,6 +3284,9 @@
+</I>&gt;<i>    /* Read a word-sized hex number. */
+</I>&gt;<i>    Int n = 0;
+</I>&gt;<i>    *val = 0;
+</I>&gt;<i> +   if (*buf == '0' &amp;&amp; *(buf+1) == 'x') {
+</I>&gt;<i> +        buf += 2; n += 2;
+</I>&gt;<i> +   }
+</I>&gt;<i>    while (hexdigit(*buf) &gt;= 0) {
+</I>&gt;<i>       *val = (*val &lt;&lt; 4) + hexdigit(*buf);
+</I>&gt;<i>       n++; buf++;
+</I>&gt;<i> @@ -3296,6 +3299,9 @@
+</I>&gt;<i>    /* Read a potentially 64-bit hex number. */
+</I>&gt;<i>    Int n = 0;
+</I>&gt;<i>    *val = 0;
+</I>&gt;<i> +   if (*buf == '0' &amp;&amp; *(buf+1) == 'x') {
+</I>&gt;<i> +        buf += 2; n += 2;
+</I>&gt;<i> +   }
+</I>&gt;<i>    while (hexdigit(*buf) &gt;= 0) {
+</I>&gt;<i>       *val = (*val &lt;&lt; 4) + hexdigit(*buf);
+</I>&gt;<i>       n++; buf++;
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Vg4nbsd-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/vg4nbsd-devel">Vg4nbsd-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/vg4nbsd-devel">https://lists.berlios.de/mailman/listinfo/vg4nbsd-devel</A>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/vg4nbsd-devel/attachments/20120223/d4c5f5c0/attachment.html">https://lists.berlios.de/pipermail/vg4nbsd-devel/attachments/20120223/d4c5f5c0/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6">[ date ]</a>
+              <a href="thread.html#6">[ thread ]</a>
+              <a href="subject.html#6">[ subject ]</a>
+              <a href="author.html#6">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/vg4nbsd-devel">More information about the Vg4nbsd-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Vg4nbsd-devel] Trivial fix for NetBSD-current 5.99.56
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/vg4nbsd-devel/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:vg4nbsd-devel%40lists.berlios.de?Subject=Re%3A%20%5BVg4nbsd-devel%5D%20Trivial%20fix%20for%20NetBSD-current%205.99.56&In-Reply-To=%3C20111223050338.GM75159%40barfooze.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Vg4nbsd-devel] Trivial fix for NetBSD-current 5.99.56</H1>
+    <B>Moritz Wilhelmy</B> 
+    <A HREF="mailto:vg4nbsd-devel%40lists.berlios.de?Subject=Re%3A%20%5BVg4nbsd-devel%5D%20Trivial%20fix%20for%20NetBSD-current%205.99.56&In-Reply-To=%3C20111223050338.GM75159%40barfooze.de%3E"
+       TITLE="[Vg4nbsd-devel] Trivial fix for NetBSD-current 5.99.56">mw at wzff.de
+       </A><BR>
+    <I>Fri Dec 23 06:03:38 CET 2011</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5">[ date ]</a>
+              <a href="thread.html#5">[ thread ]</a>
+              <a href="subject.html#5">[ subject ]</a>
+              <a href="author.html#5">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+this patch fixes at least autoconf and parsing of /proc/self/maps in a
+way so that it &quot;works&quot; on NetBSD-current. It doesn't break anything
+that's already there.
+I'm aware that starting from scratch is advised, but I'm unsure whether
+or not I hav enough time and experience to do such a port. For now, take
+this trivial contribution to the project.
+
+Best regards,
+
+Moritz
+
+
+Index: configure.in
+===================================================================
+--- configure.in	(revision 330)
++++ configure.in	(working copy)
+@@ -207,6 +207,11 @@
+         VG_OS=&quot;netbsdelf2&quot;
+         ;;
+ 
++     *netbsdelf5*)
++      AC_MSG_RESULT([ok (${host_os})])
++        VG_OS=&quot;netbsdelf2&quot;
++        ;;
++
+      *) 
+ 	AC_MSG_RESULT([no (${host_os})])
+ 	AC_MSG_ERROR([Valgrind is operating system specific. Sorry. Please consider doing a port.])
+Index: coregrind/m_aspacemgr/aspacemgr.c
+===================================================================
+--- coregrind/m_aspacemgr/aspacemgr.c	(revision 330)
++++ coregrind/m_aspacemgr/aspacemgr.c	(working copy)
+@@ -3284,6 +3284,9 @@
+    /* Read a word-sized hex number. */
+    Int n = 0;
+    *val = 0;
++   if (*buf == '0' &amp;&amp; *(buf+1) == 'x') {
++        buf += 2; n += 2;
++   }
+    while (hexdigit(*buf) &gt;= 0) {
+       *val = (*val &lt;&lt; 4) + hexdigit(*buf);
+       n++; buf++;
+@@ -3296,6 +3299,9 @@
+    /* Read a potentially 64-bit hex number. */
+    Int n = 0;
+    *val = 0;
++   if (*buf == '0' &amp;&amp; *(buf+1) == 'x') {
++        buf += 2; n += 2;
++   }
+    while (hexdigit(*buf) &gt;= 0) {
+       *val = (*val &lt;&lt; 4) + hexdigit(*buf);
+       n++; buf++;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5">[ date ]</a>
+              <a href="thread.html#5">[ thread ]</a>
+              <a href="subject.html#5">[ subject ]</a>
+              <a href="author.html#5">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/vg4nbsd-devel">More information about the Vg4nbsd-devel
+mailing list</a><br>
+</body></html>

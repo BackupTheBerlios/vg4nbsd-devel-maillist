@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Vg4nbsd-devel] Would like to get involved.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/vg4nbsd-devel/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:vg4nbsd-devel%40lists.berlios.de?Subject=Re%3A%20%5BVg4nbsd-devel%5D%20Would%20like%20to%20get%20involved.&In-Reply-To=%3CAANLkTi%3DPK3%3D3-jQHvnt2aq3p-T4x2gE9b%2BNjBURxZaG0%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000003.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Vg4nbsd-devel] Would like to get involved.</H1>
+    <B>Kailash Sethuraman</B> 
+    <A HREF="mailto:vg4nbsd-devel%40lists.berlios.de?Subject=Re%3A%20%5BVg4nbsd-devel%5D%20Would%20like%20to%20get%20involved.&In-Reply-To=%3CAANLkTi%3DPK3%3D3-jQHvnt2aq3p-T4x2gE9b%2BNjBURxZaG0%40mail.gmail.com%3E"
+       TITLE="[Vg4nbsd-devel] Would like to get involved.">hsaliak at gmail.com
+       </A><BR>
+    <I>Wed Mar  2 08:19:23 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000003.html">[Vg4nbsd-devel] Would like to get involved.
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4">[ date ]</a>
+              <a href="thread.html#4">[ thread ]</a>
+              <a href="subject.html#4">[ subject ]</a>
+              <a href="author.html#4">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Geoff,
+
+Unfortunately the project has stagnated for quite a while and we ( Myself,
+Eric and Peter) are no longer working on it.
+Currently its at a state where it can run and debug simple programs, but is
+based on an old release of valgrind.
+
+To revive the project, the best approach would be to start from scratch
+again on the latest Valgrind source code and port up the changes that are
+needed. The major mistake we made was that we forked valgrind, instead of
+making our changes a patch set. We then lost momentum when we realised that
+we need to invest a lot of time in fixing this in order for our changes to
+track the development branch of valgrind.
+
+Furthermore, the project was focused on NetBSD 3, while we are now at 5. I
+suspect that the syscalls master list would have changed a fair bit by now.
+
+However, we should also be able to leverage the code in the mainline for
+Darwin/x86. One of our biggest changes was to handle syscalls with arguments
+passed by stack instead of by register ( in linux), the Darwin port will
+probably have these changes in already.
+
+Most of the work was done within 'coregrind'. Vex (the x86-to-x86
+translator) was largely untouched. The 'skins' or 'tools' such as nullgrind,
+cachegrind and so on also had minimal changes.
+
+If you would like to revive the project, I'd be happy to do what I can to
+help you get started, but I think that it may be tough to get the original
+(Me, Eric and Peter) back together for the project.
+
+Thanks,
+Kailash
+
+
+On Wed, Mar 2, 2011 at 6:01 AM, Geoff Shannon &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/vg4nbsd-devel">earthlingzephyr at gmail.com</A>&gt;wrote:
+
+&gt;<i> Hey there,
+</I>&gt;<i>
+</I>&gt;<i> I stumbled across this project a couple months ago and I'm really
+</I>&gt;<i> interested in trying to do some work on this.  I was wondering if anybody
+</I>&gt;<i> had some comments to share about what the state of the project currently is
+</I>&gt;<i> and what needs to happen next.
+</I>&gt;<i>
+</I>&gt;<i> I've been on the IRC channel a couple times, and I'll continue to hang out
+</I>&gt;<i> there when I can.
+</I>&gt;<i>
+</I>&gt;<i> thanks,
+</I>&gt;<i> Geoff
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Nothing is ever easy.
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Vg4nbsd-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/vg4nbsd-devel">Vg4nbsd-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/vg4nbsd-devel">https://lists.berlios.de/mailman/listinfo/vg4nbsd-devel</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/vg4nbsd-devel/attachments/20110302/5c931e33/attachment.html">https://lists.berlios.de/pipermail/vg4nbsd-devel/attachments/20110302/5c931e33/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000003.html">[Vg4nbsd-devel] Would like to get involved.
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4">[ date ]</a>
+              <a href="thread.html#4">[ thread ]</a>
+              <a href="subject.html#4">[ subject ]</a>
+              <a href="author.html#4">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/vg4nbsd-devel">More information about the Vg4nbsd-devel
+mailing list</a><br>
+</body></html>

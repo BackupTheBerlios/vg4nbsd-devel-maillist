@@ -1,0 +1,61 @@
+From eric.hopper at isilon.com  Tue Sep 11 22:03:02 2007
+From: eric.hopper at isilon.com (Eric Hopper)
+Date: Tue, 11 Sep 2007 13:03:02 -0700
+Subject: [Vg4nbsd-devel] Wow...
+Message-ID: <1189540982.6264.26.camel@10-8-5-85.isilon.com>
+
+This list has seen no activity in a year!
+
+What has been the most difficult and time-consuming part of porting
+Valgrind to NetBSD?  I'm curious because I would like to be able to
+justify my employer paying me to work on this.
+
+Thanks,
+-- 
+Eric Hopper <eric.hopper at isilon.com>
+Isilon Systems
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/vg4nbsd-devel/attachments/20070911/cab3d9f0/attachment.html>
+
+From hsaliak at gmail.com  Wed Sep 12 09:04:47 2007
+From: hsaliak at gmail.com (Kailash Sethuraman)
+Date: Wed, 12 Sep 2007 08:04:47 +0100
+Subject: [Vg4nbsd-devel] Wow...
+In-Reply-To: <1189540982.6264.26.camel@10-8-5-85.isilon.com>
+References: <1189540982.6264.26.camel@10-8-5-85.isilon.com>
+Message-ID: <2217e5ce0709120004m2c41fcc7jd547c7f7f3c10bb7@mail.gmail.com>
+
+On 9/11/07, Eric Hopper <eric.hopper at isilon.com> wrote:
+> This list has seen no activity in a year!
+
+A more accurate judge of activity would be the commit logs or the
+discussions in #vg4nbsd. The list is not used actively to discuss
+development issues as we use the chat channel for that purpose. There
+is no reason to this, its just turned out that way.
+> What has been the most difficult and time-consuming part of porting
+> Valgrind to NetBSD?  I'm curious because I would like to be able to
+> justify my employer paying me to work on this.
+>
+The most difficult aspect is definitely time. None of us doing the
+port actively have a fulltime job where we can work on this. We have
+to find one two hours on the weekdays/weekends to do work on the port.
+The nature of the project also means that the work is very high
+effort/low yield.  Doing sustained development is also hard as there
+are many unknowns to the porting effort. Technically there have been
+many challenges as well, but none harder than the human factors. In
+fact the most work we ever got done was when me eric and peter had a
+chance to meet for 3 days and hack at it. Time difference also make it
+harder for us to do 'hackathons' ( 8 hours difference between me and
+peter).
+
+Do drop by freenode #vg4nbsd and we can discuss in depth on the
+technical issues.
+
+> Thanks,
+> --
+> Eric Hopper <eric.hopper at isilon.com>
+> Isilon Systems
+>
+
+

@@ -1,0 +1,33 @@
+From rsavoye at wyplay.com  Thu May  6 09:44:24 2010
+From: rsavoye at wyplay.com (Remi Savoye)
+Date: Thu, 6 May 2010 09:44:24 +0200 (CEST)
+Subject: [Vg4nbsd-devel] Porting Valgrind to SH4
+In-Reply-To: <451281724.575.1273131011445.JavaMail.root@mailserver.wyplay.com>
+Message-ID: <1709148072.584.1273131864528.JavaMail.root@mailserver.wyplay.com>
+
+Hello all.
+
+I'm currently developing for Linux on SH4.
+Unfortunately, Valgrind doesn't exist for that platform.
+As this tool is awesome, I'm considering porting it on Linux/SH4
+
+Would it be or not a too huge work to do such a thing ?
+Do you think it can be possible in about 5 months, at least for the basics ?
+
+I'm asking this to you because even if you are porting Valgrind for another OS and not another platform, so maybe you have some clues about that.
+
+
+Thanks.
+Regards.
+
+-- 
+R?mi SAVOYE
+EPITA - http://www.epita.fr/
+WyPlay - http://wyplay.com/
+----
+This message contains confidential information and may contain information that is legally privileged.  If you have received this message by mistake, please immediately notify us and delete the original message. Thank you.  
+
+Ce message contient des informations confidentielles.  S'il vous est parvenu par erreur, merci de bien vouloir nous en aviser par retour, de n'en faire aucun usage et de n'en garder aucune copie.
+----
+
+
